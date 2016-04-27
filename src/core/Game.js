@@ -1144,8 +1144,7 @@ Phaser.Game.prototype = {
 };
 
 Phaser.Game.prototype.constructor = Phaser.Game;
-
-/**
+this/**
 * The paused state of the Game. A paused game doesn't update any of its subsystems.
 * When a game is paused the onPause event is dispatched. When it is resumed the onResume event is dispatched.
 * @name Phaser.Game#paused
@@ -1165,6 +1164,7 @@ Object.defineProperty(Phaser.Game.prototype, "paused", {
             {
                 this._paused = true;
                 this.sound.setMute();
+                this.sound.pauseAll();
                 this.time.gamePaused();
                 this.onPause.dispatch(this);
             }
@@ -1177,6 +1177,7 @@ Object.defineProperty(Phaser.Game.prototype, "paused", {
                 this._paused = false;
                 this.input.reset();
                 this.sound.unsetMute();
+                this.sound.resumeAll();
                 this.time.gameResumed();
                 this.onResume.dispatch(this);
             }
