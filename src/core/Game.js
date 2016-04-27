@@ -1165,6 +1165,7 @@ Object.defineProperty(Phaser.Game.prototype, "paused", {
             {
                 this._paused = true;
                 this.sound.setMute();
+                this.sound.pauseAll();
                 this.time.gamePaused();
                 this.onPause.dispatch(this);
             }
@@ -1177,6 +1178,7 @@ Object.defineProperty(Phaser.Game.prototype, "paused", {
                 this._paused = false;
                 this.input.reset();
                 this.sound.unsetMute();
+                this.sound.resumeAll();
                 this.time.gameResumed();
                 this.onResume.dispatch(this);
             }
